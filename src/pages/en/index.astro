@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PortfolioSection from '../../components/PortfolioSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+
+// Services data
+const services = [
+  {
+    icon: "fa-solid fa-globe",
+    title: "Web Development",
+    description: "We create modern, responsive, and functional websites using the latest technologies and best practices.",
+    link: "/en/services/#web-development"
+  },
+  {
+    icon: "fa-solid fa-mobile-screen",
+    title: "UX/UI Design",
+    description: "We design user-friendly and intuitive interfaces that provide excellent user experience.",
+    link: "/en/services/#ux-ui-design"
+  },
+  {
+    icon: "fa-solid fa-fingerprint",
+    title: "Branding",
+    description: "We create unique and memorable brands that stand out from the competition and attract customers.",
+    link: "/en/services/#branding"
+  },
+  {
+    icon: "fa-solid fa-magnifying-glass",
+    title: "SEO Optimization",
+    description: "We improve your website's visibility in search engines and drive targeted traffic to grow your business.",
+    link: "/en/services/#seo"
+  }
+];
+
+// Portfolio data
+const portfolioItems = [
+  {
+    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Nature Home Eco Brand",
+    category: "Branding & Web Design",
+    link: "/en/portfolio/eco-brand"
+  },
+  {
+    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Finance Tracking App",
+    category: "UI/UX & Development",
+    link: "/en/portfolio/finance-app"
+  },
+  {
+    image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "AlphaWear E-commerce Store",
+    category: "E-commerce",
+    link: "/en/portfolio/alphawear"
+  },
+  {
+    image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "TravelDiary Blog",
+    category: "Web Development",
+    link: "/en/portfolio/travel-diary"
+  },
+  {
+    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "BeanBrew Coffee Shop Rebranding",
+    category: "Branding",
+    link: "/en/portfolio/coffee-rebrand"
+  },
+  {
+    image: "https://images.pexels.com/photos/5081918/pexels-photo-5081918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Fresh Foods Packaging Design",
+    category: "Packaging & Branding",
+    link: "/en/portfolio/packaging-design"
+  }
+];
+---
+
+<Layout 
+  title="WebStudio - Modern Website Development and Branding"
+  description="We create beautiful, functional, and SEO-optimized websites, develop branding, and provide a full range of digital marketing services."
+  language="en"
+>
+  <HeroSection
+    title="Turning Ideas into Digital Reality"
+    subtitle="We create beautiful, functional, and SEO-optimized websites that help your business grow and reach new heights."
+    ctaText="Our Services"
+    ctaLink="/en/services/"
+    language="en"
+  />
+  
+  <ServicesSection
+    sectionTitle="Our Services"
+    sectionSubtitle="We offer a full range of web development and design services to help your business thrive in the digital world."
+    services={services}
+    ctaText="All Services"
+    ctaLink="/en/services/"
+  />
+  
+  <PortfolioSection
+    sectionTitle="Our Portfolio"
+    sectionSubtitle="Check out our latest projects and see how we help our clients achieve their goals."
+    portfolioItems={portfolioItems}
+    ctaText="All Projects"
+    ctaLink="/en/portfolio/"
+  />
+  
+  <ContactSection
+    sectionTitle="Get in Touch"
+    sectionSubtitle="Ready to start a project or have questions? Reach out to us and we'll get back to you within 24 hours."
+    address="Tallinn, Estonia"
+    email="info@webstudio.com"
+    phone="+372 5555 5555"
+    formNameLabel="Your Name"
+    formEmailLabel="Your Email"
+    formMessageLabel="Message"
+    formSubmitText="Send Message"
+  />
+</Layout>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

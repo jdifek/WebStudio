@@ -1,0 +1,832 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  ogUrl?: string;
+  language: "ru" | "en" | "et" | "de";
+}
+
+const { 
+  title, 
+  description, 
+  ogImage = "/images/og-image.jpg", 
+  ogUrl,
+  language
+} = Astro.props;
+
+const languageLabels = {
+  ru: "Русский",
+  en: "English",
+  et: "Eesti",
+  de: "Deutsch"
+};
+
+const navigationItems = {
+  ru: [
+    { href: "/ru/", text: "Главная" },
+    { href: "/ru/about/", text: "О нас" },
+    { href: "/ru/services/", text: "Услуги" },
+    { href: "/ru/portfolio/", text: "Портфолио" },
+    { href: "/ru/contact/", text: "Контакт" },
+  ],
+  en: [
+    { href: "/en/", text: "Home" },
+    { href: "/en/about/", text: "About" },
+    { href: "/en/services/", text: "Services" },
+    { href: "/en/portfolio/", text: "Portfolio" },
+    { href: "/en/contact/", text: "Contact" },
+  ],
+  et: [
+    { href: "/et/", text: "Avaleht" },
+    { href: "/et/meist/", text: "Meist" },
+    { href: "/et/teenused/", text: "Teenused" },
+    { href: "/et/portfell/", text: "Portfell" },
+    { href: "/et/kontakt/", text: "Kontakt" },
+  ],
+  de: [
+    { href: "/de/", text: "Startseite" },
+    { href: "/de/uber-uns/", text: "Über uns" },
+    { href: "/de/dienstleistungen/", text: "Dienstleistungen" },
+    { href: "/de/portfolio/", text: "Portfolio" },
+    { href: "/de/kontakt/", text: "Kontakt" },
+  ]
+};
+
+// Маппинг путей для каждой страницы по языкам
+const pagePathMap = {
+  home: {
+    ru: "/ru/",
+    en: "/en/",
+    et: "/et/",
+    de: "/de/"
+  },
+  about: {
+    ru: "/ru/about/",
+    en: "/en/about/",
+    et: "/et/meist/",
+    de: "/de/uber-uns/"
+  },
+  services: {
+    ru: "/ru/services/",
+    en: "/en/services/",
+    et: "/et/teenused/",
+    de: "/de/dienstleistungen/"
+  },
+  portfolio: {
+    ru: "/ru/portfolio/",
+    en: "/en/portfolio/",
+    et: "/et/portfell/",
+    de: "/de/portfolio/"
+  },
+  contact: {
+    ru: "/ru/contact/",
+    en: "/en/contact/",
+    et: "/et/kontakt/",
+    de: "/de/kontakt/"
+  }
+};
+
+// Функция для определения текущей страницы на основе пути
+function getCurrentPage(pathname: string): keyof typeof pagePathMap {
+  const cleanPath = pathname.replace(/^\/(ru|en|et|de)\//, "/");
+  if (cleanPath === "/" || cleanPath === "") return "home";
+  if (cleanPath === "/about/" || cleanPath === "/meist/" || cleanPath === "/uber-uns/") return "about";
+  if (cleanPath === "/services/" || cleanPath === "/teenused/" || cleanPath === "/dienstleistungen/") return "services";
+  if (cleanPath === "/portfolio/" || cleanPath === "/portfell/") return "portfolio";
+  if (cleanPath === "/contact/" || cleanPath === "/kontakt/") return "contact";
+  return "home";
+}
+
+const currentPath = Astro.url.pathname;
+const currentUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : Astro.url.pathname;
+const currentPage = getCurrentPage(currentPath);
+const languageUrls = {
+  ru: pagePathMap[currentPage].ru,
+  en: pagePathMap[currentPage].en,
+  et: pagePathMap[currentPage].et,
+  de: pagePathMap[currentPage].de
+};
+---
+
+<!DOCTYPE html>
+<html lang={language}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Hreflang tags for multilingual SEO -->
+    <link rel="alternate" href={Astro.site ? new URL(languageUrls.ru, Astro.site).href : languageUrls.ru} hreflang="ru" />
+    <link rel="alternate" href={Astro.site ? new URL(languageUrls.en, Astro.site).href : languageUrls.en} hreflang="en" />
+    <link rel="alternate" href={Astro.site ? new URL(languageUrls.et, Astro.site).href : languageUrls.et} hreflang="et" />
+    <link rel="alternate" href={Astro.site ? new URL(languageUrls.de, Astro.site).href : languageUrls.de} hreflang="de" />
+    <link rel="alternate" href={Astro.site ? new URL(languageUrls.en, Astro.site).href : languageUrls.en} hreflang="x-default" />
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage} />
+    <meta property="og:url" content={ogUrl || currentUrl} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={Astro.site ? new URL(ogImage, Astro.site).href : ogImage} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={currentUrl} />
+    
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="/styles/global.css" />
+
+    <!-- Preload fonts -->
+    <link rel="preload" href="/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <div class="logo">
+          <a href={pagePathMap.home[language]}>
+            <span>WebStudio</span>
+          </a>
+        </div>
+        
+        <button class="menu-toggle" aria-label="Toggle Menu">
+          <span></span><span></span><span></span>
+        </button>
+        
+        <nav class="main-nav">
+          <ul>
+            {(navigationItems[language] || navigationItems['en']).map(item => (
+              <li class={currentPath === item.href ? "active" : ""}>
+                <a href={item.href}>{item.text}</a>
+              </li>
+            ))}
+            <!-- Переключатель языков внутри бургер-меню на мобильных -->
+            <li class="language-switcher-mobile">
+              <ul>
+                {Object.entries(languageLabels).map(([lang, label]) => (
+                  <li class={language === lang ? "active" : ""}>
+                    <a href={languageUrls[lang]} aria-label={`Switch to ${label}`}>{lang.toUpperCase()}</a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        
+        <!-- Переключатель языков в хедере для десктопов -->
+        <div class="language-switcher">
+          <ul>
+            {Object.entries(languageLabels).map(([lang, label]) => (
+              <li class={language === lang ? "active" : ""}>
+                <a href={languageUrls[lang]} aria-label={`Switch to ${label}`}>{lang.toUpperCase()}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </header>
+    
+    <main>
+      <slot />
+    </main>
+    
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-logo">
+            <span>WebStudio</span>
+            <p>© {new Date().getFullYear()} WebStudio.</p>
+          </div>
+          
+          <div class="footer-nav">
+            <h3>
+              {language === "ru" ? "Навигация" : 
+               language === "en" ? "Navigation" :
+               language === "et" ? "Navigatsioon" :
+               "Navigation"}
+            </h3>
+            <ul>
+              {(navigationItems[language] || navigationItems['en']).map(item => (
+                <li><a href={item.href}>{item.text}</a></li>
+              ))}
+            </ul>
+          </div>
+          
+          <div class="footer-contact">
+            <h3>
+              {language === "ru" ? "Контакты" : 
+               language === "en" ? "Contact" :
+               language === "et" ? "Kontakt" :
+               "Kontakt"}
+            </h3>
+            <p>info@webstudio.com</p>
+            <p>+372 5555 5555</p>
+            <p>
+              {language === "ru" ? "Таллинн, Эстония" : 
+               language === "en" ? "Tallinn, Estonia" :
+               language === "et" ? "Tallinn, Eesti" :
+               "Tallinn, Estland"}
+            </p>
+          </div>
+          
+          <div class="footer-social">
+            <h3>
+              {language === "ru" ? "Социальные сети" : 
+               language === "en" ? "Social Media" :
+               language === "et" ? "Sotsiaalmeedia" :
+               "Soziale Medien"}
+            </h3>
+            <ul>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+        document.querySelector('.main-nav')?.classList.toggle('active');
+        document.querySelector('.menu-toggle')?.classList.toggle('active');
+      });
+
+      // Header scroll effect
+      const header = document.querySelector('.site-header');
+      let lastScrollY = window.scrollY;
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header?.classList.add('scrolled');
+        } else {
+          header?.classList.remove('scrolled');
+        }
+
+        // Hide header on scroll down, show on scroll up
+        if (window.scrollY > lastScrollY && window.scrollY > 200) {
+          header?.classList.add('hidden');
+        } else {
+          header?.classList.remove('hidden');
+        }
+        
+        lastScrollY = window.scrollY;
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+/* Global Styles */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/Inter-Bold.woff2') format('woff2');
+}
+
+:root {
+  /* Primary colors */
+  --color-primary-50: #f0f8ff;
+  --color-primary-100: #e0f2fe;
+  --color-primary-200: #bae6fd;
+  --color-primary-300: #7dd3fc;
+  --color-primary-400: #38bdf8;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0284c7;
+  --color-primary-700: #0369a1;
+  --color-primary-800: #075985;
+  --color-primary-900: #0c4a6e;
+  
+  /* Secondary colors */
+  --color-secondary-50: #f5f3ff;
+  --color-secondary-100: #ede9fe;
+  --color-secondary-200: #ddd6fe;
+  --color-secondary-300: #c4b5fd;
+  --color-secondary-400: #a78bfa;
+  --color-secondary-500: #8b5cf6;
+  --color-secondary-600: #7c3aed;
+  --color-secondary-700: #6d28d9;
+  --color-secondary-800: #5b21b6;
+  --color-secondary-900: #4c1d95;
+  
+  /* Accent colors */
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffedd5;
+  --color-accent-200: #fed7aa;
+  --color-accent-300: #fdba74;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #f97316;
+  --color-accent-600: #ea580c;
+  --color-accent-700: #c2410c;
+  --color-accent-800: #9a3412;
+  --color-accent-900: #7c2d12;
+  
+  /* Success colors */
+  --color-success-50: #ecfdf5;
+  --color-success-500: #10b981;
+  --color-success-700: #047857;
+  
+  /* Warning colors */
+  --color-warning-50: #fffbeb;
+  --color-warning-500: #f59e0b;
+  --color-warning-700: #b45309;
+  
+  /* Error colors */
+  --color-error-50: #fef2f2;
+  --color-error-500: #ef4444;
+  --color-error-700: #b91c1c;
+  
+  /* Neutral colors */
+  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;
+  --color-neutral-600: #475569;
+  --color-neutral-700: #334155;
+  --color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;
+  
+  /* Base colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  
+  /* Text colors */
+  --color-text-dark: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-600);
+  --color-text-light: var(--color-white);
+  
+  /* Background colors */
+  --color-bg-light: var(--color-neutral-50);
+  --color-bg-alt: var(--color-neutral-100);
+  --color-bg-dark: var(--color-neutral-900);
+  
+  /* Border colors */
+  --color-border: var(--color-neutral-200);
+  --color-border-dark: var(--color-neutral-300);
+  
+  /* RGB values for primary color (for rgba usage) */
+  --color-primary-rgb: 14, 165, 233;
+  
+  /* Spacing system */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem;  /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem;    /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem;  /* 24px */
+  --space-8: 2rem;    /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem;   /* 48px */
+  --space-16: 4rem;   /* 64px */
+  --space-20: 5rem;   /* 80px */
+  --space-24: 6rem;   /* 96px */
+  --space-32: 8rem;   /* 128px */
+  --space-40: 10rem;  /* 160px */
+  --space-48: 12rem;  /* 192px */
+  --space-56: 14rem;  /* 224px */
+  --space-64: 16rem;  /* 256px */
+  
+  /* Container width */
+  --container-width: 1200px;
+  
+  /* Transition speeds */
+  --transition-fast: 150ms;
+  --transition-medium: 300ms;
+  --transition-slow: 500ms;
+  
+  /* Border radius */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.5rem;  /* 8px */
+  --radius-lg: 1rem;    /* 16px */
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-dark);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-primary-600);
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* Header Styles */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.site-header.scrolled {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.site-header.hidden {
+  transform: translateY(-100%);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  text-decoration: none;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.main-nav li {
+  margin-left: var(--space-6);
+}
+
+.main-nav a {
+  color: var(--color-text-dark);
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.main-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary-500);
+  transition: width 0.3s ease;
+}
+
+.main-nav a:hover::after,
+.main-nav li.active a::after {
+  width: 100%;
+}
+
+.language-switcher ul {
+  display: flex;
+  list-style: none;
+}
+
+.language-switcher li {
+  margin-left: var(--space-3);
+}
+
+.language-switcher a {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.language-switcher a:hover {
+  color: var(--color-primary-500);
+}
+
+.language-switcher li.active a {
+  color: var(--color-primary-500);
+  font-weight: 700;
+}
+
+/* Стили для переключателя языков в бургер-меню (для мобильных) */
+.language-switcher-mobile {
+  display: none; /* Скрываем на десктопе по умолчанию */
+}
+
+.language-switcher-mobile ul {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+.language-switcher-mobile li {
+  margin-bottom: var(--space-2);
+}
+
+.language-switcher-mobile a {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.language-switcher-mobile a:hover {
+  color: var(--color-primary-500);
+}
+
+.language-switcher-mobile li.active a {
+  color: var(--color-primary-500);
+  font-weight: 700;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  width: 30px;
+  height: 24px;
+  position: relative;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  background-color: var(--color-text-dark);
+  border-radius: 2px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: .25s ease-in-out;
+}
+
+.menu-toggle span:nth-child(1) {
+  top: 0px;
+}
+
+.menu-toggle span:nth-child(2) {
+  top: 10px;
+}
+
+.menu-toggle span:nth-child(3) {
+  top: 20px;
+}
+
+.menu-toggle.active span:nth-child(1) {
+  top: 10px;
+  transform: rotate(135deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  top: 10px;
+  transform: rotate(-135deg);
+}
+
+/* Footer Styles */
+.site-footer {
+  background-color: var(--color-neutral-900);
+  color: var(--color-neutral-300);
+  padding: var(--space-16) 0;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.footer-logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: var(--space-4);
+}
+
+.footer-logo p {
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-top: var(--space-6);
+}
+
+.footer-nav h3,
+.footer-contact h3,
+.footer-social h3 {
+  color: var(--color-white);
+  font-size: 1.125rem;
+  margin-bottom: var(--space-4);
+}
+
+.footer-nav ul,
+.footer-social ul {
+  list-style: none;
+}
+
+.footer-nav li,
+.footer-social li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-nav a,
+.footer-social a,
+.footer-contact a {
+  color: var(--color-neutral-300);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover,
+.footer-social a:hover,
+.footer-contact a:hover {
+  color: var(--color-primary-300);
+}
+
+.footer-contact p {
+  margin-bottom: var(--space-2);
+}
+
+/* Buttons */
+.button {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.button-primary {
+  background-color: var(--color-primary-500);
+  color: var(--color-white);
+}
+
+.button-primary:hover {
+  background-color: var(--color-primary-600);
+}
+
+.button-secondary {
+  background-color: var(--color-secondary-500);
+  color: var(--color-white);
+}
+
+.button-secondary:hover {
+  background-color: var(--color-secondary-600);
+}
+
+.button-outline {
+  background-color: transparent;
+  color: var(--color-primary-500);
+  border: 2px solid var(--color-primary-500);
+}
+
+.button-outline:hover {
+  background-color: var(--color-primary-50);
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8) var(--space-6);
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header .container {
+    height: 70px;
+  }
+  
+  .menu-toggle {
+    display: block;
+    z-index: 101;
+  }
+  
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: var(--color-white);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+    padding: 100px 32px 32px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 100;
+  }
+  
+  .main-nav.active {
+    right: 0;
+  }
+  
+  .main-nav ul {
+    flex-direction: column;
+  }
+  
+  .main-nav li {
+    margin-left: 0;
+    margin-bottom: var(--space-6);
+  }
+  
+  /* Скрываем переключатель языков в хедере на мобильных */
+  .language-switcher {
+    display: none;
+  }
+
+  /* Показываем переключатель языков в бургер-меню на мобильных */
+  .language-switcher-mobile {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Убедимся, что переключатель языков в бургер-меню скрыт на десктопе */
+  .language-switcher-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+}
+</style>

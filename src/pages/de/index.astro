@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PortfolioSection from '../../components/PortfolioSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+
+// Services data
+const services = [
+  {
+    icon: "fa-solid fa-globe",
+    title: "Webentwicklung",
+    description: "Wir erstellen moderne, responsive und funktionale Websites mit den neuesten Technologien und Best Practices.",
+    link: "/de/dienstleistungen/#web-entwicklung"
+  },
+  {
+    icon: "fa-solid fa-mobile-screen",
+    title: "UX/UI Design",
+    description: "Wir entwickeln benutzerfreundliche und intuitive Benutzeroberflächen, die eine hervorragende Nutzererfahrung bieten.",
+    link: "/de/dienstleistungen/#ux-ui-design"
+  },
+  {
+    icon: "fa-solid fa-fingerprint",
+    title: "Branding",
+    description: "Wir schaffen einzigartige und unvergessliche Marken, die sich von der Konkurrenz abheben und Kunden anziehen.",
+    link: "/de/dienstleistungen/#branding"
+  },
+  {
+    icon: "fa-solid fa-magnifying-glass",
+    title: "SEO-Optimierung",
+    description: "Wir verbessern die Sichtbarkeit Ihrer Website in Suchmaschinen und ziehen gezielten Traffic für Ihr Unternehmenswachstum an.",
+    link: "/de/dienstleistungen/#seo"
+  }
+];
+
+// Portfolio data
+const portfolioItems = [
+  {
+    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Nature Home Öko-Marke",
+    category: "Branding & Webdesign",
+    link: "/de/portfolio/eco-brand"
+  },
+  {
+    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Finanz-Tracking-App",
+    category: "UI/UX & Entwicklung",
+    link: "/de/portfolio/finance-app"
+  },
+  {
+    image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "AlphaWear Online-Shop",
+    category: "E-Commerce",
+    link: "/de/portfolio/alphawear"
+  },
+  {
+    image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "TravelDiary Blog",
+    category: "Webentwicklung",
+    link: "/de/portfolio/travel-diary"
+  },
+  {
+    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "BeanBrew Kaffee-Rebranding",
+    category: "Branding",
+    link: "/de/portfolio/coffee-rebrand"
+  },
+  {
+    image: "https://images.pexels.com/photos/5081918/pexels-photo-5081918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Fresh Foods Verpackungsdesign",
+    category: "Verpackung & Branding",
+    link: "/de/portfolio/packaging-design"
+  }
+];
+---
+
+<Layout 
+  title="WebStudio - Moderne Websites und Branding"
+  description="Wir erstellen schöne, funktionale und SEO-optimierte Websites, entwickeln Branding und bieten ein umfassendes Spektrum an digitalen Marketingdienstleistungen."
+  language="de"
+>
+  <HeroSection
+    title="Ideen in digitale Realität verwandeln"
+    subtitle="Wir erstellen schöne, funktionale und SEO-optimierte Websites, die Ihrem Unternehmen helfen, zu wachsen und neue Höhen zu erreichen."
+    ctaText="Unsere Dienstleistungen"
+    ctaLink="/de/dienstleistungen/"
+    language="de"
+  />
+  
+  <ServicesSection
+    sectionTitle="Unsere Dienstleistungen"
+    sectionSubtitle="Wir bieten ein umfassendes Spektrum an Webentwicklungs- und Design-Dienstleistungen, um Ihrem Unternehmen zum Erfolg in der digitalen Welt zu verhelfen."
+    services={services}
+    ctaText="Alle Dienstleistungen"
+    ctaLink="/de/dienstleistungen/"
+  />
+  
+  <PortfolioSection
+    sectionTitle="Unser Portfolio"
+    sectionSubtitle="Entdecken Sie unsere neuesten Projekte und sehen Sie, wie wir unseren Kunden helfen, ihre Ziele zu erreichen."
+    portfolioItems={portfolioItems}
+    ctaText="Alle Projekte"
+    ctaLink="/de/portfolio/"
+  />
+  
+  <ContactSection
+    sectionTitle="Kontaktieren Sie uns"
+    sectionSubtitle="Bereit, ein Projekt zu starten oder haben Sie Fragen? Schreiben Sie uns, und wir antworten innerhalb von 24 Stunden."
+    address="Tallinn, Estland"
+    email="info@webstudio.com"
+    phone="+372 5555 5555"
+    formNameLabel="Ihr Name"
+    formEmailLabel="Ihre E-Mail"
+    formMessageLabel="Nachricht"
+    formSubmitText="Senden"
+  />
+</Layout>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

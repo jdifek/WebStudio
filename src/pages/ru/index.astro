@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PortfolioSection from '../../components/PortfolioSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+
+// Services data
+const services = [
+  {
+    icon: "fa-solid fa-globe",
+    title: "Веб-разработка",
+    description: "Создаем современные, отзывчивые и функциональные веб-сайты, используя новейшие технологии и лучшие практики.",
+    link: "/ru/services/#web-development"
+  },
+  {
+    icon: "fa-solid fa-mobile-screen",
+    title: "UX/UI Дизайн",
+    description: "Разрабатываем удобные и интуитивно понятные интерфейсы, которые обеспечивают отличный пользовательский опыт.",
+    link: "/ru/services/#ux-ui-design"
+  },
+  {
+    icon: "fa-solid fa-fingerprint",
+    title: "Брендинг",
+    description: "Создаем уникальные и запоминающиеся бренды, которые выделяются на фоне конкурентов и привлекают клиентов.",
+    link: "/ru/services/#branding"
+  },
+  {
+    icon: "fa-solid fa-magnifying-glass",
+    title: "SEO Оптимизация",
+    description: "Повышаем видимость вашего сайта в поисковых системах и привлекаем целевой трафик для роста вашего бизнеса.",
+    link: "/ru/services/#seo"
+  }
+];
+
+// Portfolio data
+const portfolioItems = [
+  {
+    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Эко-бренд Nature Home",
+    category: "Брендинг & Веб-дизайн",
+    link: "/ru/portfolio/eco-brand"
+  },
+  {
+    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Приложение для учета финансов",
+    category: "UI/UX & Разработка",
+    link: "/ru/portfolio/finance-app"
+  },
+  {
+    image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Интернет-магазин AlphaWear",
+    category: "Электронная коммерция",
+    link: "/ru/portfolio/alphawear"
+  },
+  {
+    image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Блог о путешествиях TravelDiary",
+    category: "Веб-разработка",
+    link: "/ru/portfolio/travel-diary"
+  },
+  {
+    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Ребрендинг кофейни BeanBrew",
+    category: "Брендинг",
+    link: "/ru/portfolio/coffee-rebrand"
+  },
+  {
+    image: "https://images.pexels.com/photos/5081918/pexels-photo-5081918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Дизайн упаковки для Fresh Foods",
+    category: "Упаковка & Брендинг",
+    link: "/ru/portfolio/packaging-design"
+  }
+];
+---
+
+<Layout 
+  title="WebStudio - Создание современных веб-сайтов и брендинга"
+  description="Мы создаем красивые, функциональные и SEO-оптимизированные веб-сайты, разрабатываем брендинг и предоставляем полный спектр услуг цифрового маркетинга."
+  language="ru"
+>
+  <HeroSection
+    title="Превращаем идеи в цифровую реальность"
+    subtitle="Мы создаем красивые, функциональные и SEO-оптимизированные веб-сайты, которые помогают вашему бизнесу расти и достигать новых высот."
+    ctaText="Наши услуги"
+    ctaLink="/ru/services/"
+    language="ru"
+  />
+  
+  <ServicesSection
+    sectionTitle="Наши услуги"
+    sectionSubtitle="Мы предлагаем полный спектр услуг веб-разработки и дизайна, чтобы помочь вашему бизнесу процветать в цифровом мире."
+    services={services}
+    ctaText="Все услуги"
+    ctaLink="/ru/services/"
+  />
+  
+  <PortfolioSection
+    sectionTitle="Наше портфолио"
+    sectionSubtitle="Ознакомьтесь с нашими последними проектами и узнайте, как мы помогаем нашим клиентам достигать их целей."
+    portfolioItems={portfolioItems}
+    ctaText="Все проекты"
+    ctaLink="/ru/portfolio/"
+  />
+  
+  <ContactSection
+    sectionTitle="Свяжитесь с нами"
+    sectionSubtitle="Готовы начать проект или у вас есть вопросы? Напишите нам, и мы ответим в течение 24 часов."
+    address="Таллинн, Эстония"
+    email="info@webstudio.com"
+    phone="+372 5555 5555"
+    formNameLabel="Ваше имя"
+    formEmailLabel="Ваш email"
+    formMessageLabel="Сообщение"
+    formSubmitText="Отправить"
+  />
+</Layout>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

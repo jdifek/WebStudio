@@ -1,0 +1,281 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const teamMembers = [
+  {
+    name: "Aleksandr Ivanov",
+    position: "Founder & CEO",
+    image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Over 15 years of experience in web development and digital marketing"
+  },
+  {
+    name: "Maria Petrova",
+    position: "Creative Director",
+    image: "https://images.pexels.com/photos/3727464/pexels-photo-3727464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "UX/UI design expert with international experience"
+  },
+  {
+    name: "Dmitri Smirnov",
+    position: "Technical Lead",
+    image: "https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    bio: "Specialist in full-stack development and architecture"
+  }
+];
+
+const stats = [
+  { number: "250+", label: "Completed Projects" },
+  { number: "50+", label: "Satisfied Clients" },
+  { number: "15+", label: "Years of Experience" },
+  { number: "3", label: "Offices in Europe" }
+];
+---
+
+<Layout
+  title="About | WebStudio - Leading Web Studio in Estonia"
+  description="Learn about WebStudio, a leading web studio in Estonia. We create innovative digital solutions since 2010."
+  language="en"
+>
+  <section class="about-hero">
+    <div class="container">
+      <h1 class="about-title" data-aos="fade-up">About Us</h1>
+      <p class="about-subtitle" data-aos="fade-up" data-aos-delay="100">
+        We are a team of professionals creating innovative digital solutions since 2010
+      </p>
+    </div>
+  </section>
+
+  <section class="about-stats">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat, index) => (
+          <div class="stat-item" data-aos="fade-up" data-aos-delay={index * 100}>
+            <span class="stat-number">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="about-content">
+    <div class="container">
+      <div class="content-grid">
+        <div class="content-text" data-aos="fade-right">
+          <h2>Our Story</h2>
+          <p>
+            WebStudio started in 2010 as a small team of enthusiasts. 
+            Today, we are one of the leading web studios in Estonia, delivering innovative 
+            digital solutions to clients across Europe.
+          </p>
+          <p>
+            Our mission is to help businesses grow and succeed in the digital world 
+            by creating effective and modern web solutions.
+          </p>
+        </div>
+        <div class="content-image" data-aos="fade-left">
+          <img 
+            src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
+            alt="WebStudio team at work"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+      <h2 class="team-title" data-aos="fade-up">Our Team</h2>
+      <div class="team-grid">
+        {teamMembers.map((member, index) => (
+          <div class="team-member" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div class="member-image">
+              <img src={member.image} alt={member.name} loading="lazy" />
+            </div>
+            <h3 class="member-name">{member.name}</h3>
+            <p class="member-position">{member.position}</p>
+            <p class="member-bio">{member.bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-hero {
+    padding: 120px 0 60px;
+    background-color: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .about-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+  }
+
+  .about-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .about-stats {
+    padding: 80px 0;
+    background-color: var(--color-white);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary-500);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+  }
+
+  .about-content {
+    padding: 100px 0;
+    background-color: var(--color-bg-light);
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .content-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-dark);
+  }
+
+  .content-text p {
+    font-size: 1.125rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .content-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .team-section {
+    padding: 100px 0;
+    background-color: var(--color-white);
+  }
+
+  .team-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 64px;
+    color: var(--color-text-dark);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .team-member {
+    text-align: center;
+  }
+
+  .member-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .member-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+  }
+
+  .member-position {
+    font-size: 1.125rem;
+    color: var(--color-primary-500);
+    margin-bottom: 1rem;
+  }
+
+  .member-bio {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 992px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .content-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .team-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .about-hero {
+      padding: 100px 0 50px;
+    }
+
+    .about-title {
+      font-size: 2.5rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+    }
+
+    .content-text h2 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

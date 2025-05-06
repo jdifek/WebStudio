@@ -1,0 +1,357 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const services = [
+  {
+    icon: "fa-solid fa-code",
+    title: "Veebiarendus",
+    description: "Loome kaasaegseid, kiireid ja skaleeritavaid veebirakendusi, kasutades tipptehnoloogiaid.",
+    features: [
+      "Kohanduv disain",
+      "Toimivuse optimeerimine",
+      "SEO-sõbralik arhitektuur",
+      "CMS-i integreerimine"
+    ]
+  },
+  {
+    icon: "fa-solid fa-palette",
+    title: "UI/UX Disain",
+    description: "Arendame intuitiivseid ja atraktiivseid kasutajaliideseid, mida kasutajad armastavad.",
+    features: [
+      "Kasutajauuringud",
+      "Prototüüpimine",
+      "Disainisüsteemid",
+      "Kasutatavuse testimine"
+    ]
+  },
+  {
+    icon: "fa-solid fa-bullhorn",
+    title: "Bränding",
+    description: "Loome ainulaadseid ja meeldejäävaid brände, mis turul silma paistavad.",
+    features: [
+      "Logo arendus",
+      "Brändi stiil",
+      "Brändiraamat",
+      "Turundusmaterjalid"
+    ]
+  },
+  {
+    icon: "fa-solid fa-chart-line",
+    title: "SEO Optimeerimine",
+    description: "Tõstame teie veebisaidi nähtavust otsingumootorites ja meelitame sihitud liiklust.",
+    features: [
+      "Tehniline optimeerimine",
+      "Sisustrateegia",
+      "Linkide ehitamine",
+      "Analüütika ja aruandlus"
+    ]
+  },
+  {
+    icon: "fa-solid fa-shopping-cart",
+    title: "E-kaubanduse lahendused",
+    description: "Arendame tõhusaid veebipoode, mis müüvad.",
+    features: [
+      "Maksete süsteemide integreerimine",
+      "Toodete haldus",
+      "Protsesside automatiseerimine",
+      "Müügianalüütika"
+    ]
+  },
+  {
+    icon: "fa-solid fa-server",
+    title: "Tugi ja majutus",
+    description: "Tagame teie veebisaidi tõrgeteta töö ja kiire tehnilise toe.",
+    features: [
+      "24/7 jälgimine",
+      "Varundamine",
+      "Turvauuendused",
+      "Tehniline tugi"
+    ]
+  }
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Analüüs ja planeerimine",
+    description: "Uurime teie äri, eesmärke ja sihtrühma vajadusi."
+  },
+  {
+    number: "02",
+    title: "Disain ja prototüüpimine",
+    description: "Loome prototüüpe ja disainilahendusi projekti visualiseerimiseks."
+  },
+  {
+    number: "03",
+    title: "Arendus",
+    description: "Rakendame disaini, kasutades kaasaegseid tehnoloogiaid."
+  },
+  {
+    number: "04",
+    title: "Testimine",
+    description: "Viime läbi põhjaliku funktsioonide testimise ja optimeerimise."
+  },
+  {
+    number: "05",
+    title: "Käivitamine",
+    description: "Käivitame projekti ja tagame sujuva alguse."
+  }
+];
+---
+
+<Layout
+  title="Teenused | WebStudio - Veebilehtede arendus ja bränding"
+  description="Professionaalsed teenused veebilehtede loomiseks, veebirakenduste arendamiseks, brändingu ja SEO optimeerimiseks. Kaasaegsed lahendused teie ärile."
+  language="et"
+>
+  <section class="services-hero">
+    <div class="container">
+      <h1 class="services-title" data-aos="fade-up">Meie teenused</h1>
+      <p class="services-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Täielikud lahendused teie ärile digitaalses maailmas
+      </p>
+    </div>
+  </section>
+
+  <section class="services-grid">
+    <div class="container">
+      <div class="grid">
+        {services.map((service, index) => (
+          <div class="service-card" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div class="service-icon">
+              <i class={service.icon}></i>
+            </div>
+            <h2 class="service-title">{service.title}</h2>
+            <p class="service-description">{service.description}</p>
+            <ul class="service-features">
+              {service.features.map(feature => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <h2 class="process-title" data-aos="fade-up">Kuidas me töötame</h2>
+      <div class="process-grid">
+        {process.map((step, index) => (
+          <div class="process-step" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div class="step-number">{step.number}</div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-description">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>Kas olete valmis projekti alustama?</h2>
+        <p>Võtke meiega ühendust, et arutada oma projekti</p>
+        <a href="/et/kontakt" class="button button-primary">Võtke meiega ühendust</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .services-hero {
+    padding: 120px 0 60px;
+    background-color: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .services-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+  }
+
+  .services-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    padding: 100px 0;
+    background-color: var(--color-white);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .service-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary-500);
+    margin-bottom: 24px;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--color-text-dark);
+  }
+
+  .service-description {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-features li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-500);
+  }
+
+  .process-section {
+    padding: 100px 0;
+    background-color: var(--color-bg-light);
+  }
+
+  .process-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 64px;
+    color: var(--color-text-dark);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px;
+  }
+
+  .process-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    right: -16px;
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-primary-500);
+  }
+
+  .step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary-500);
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--color-text-dark);
+  }
+
+  .step-description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    padding: 100px 0;
+    background-color: var(--color-white);
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+  }
+
+  .cta-content p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-step:nth-child(3)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-hero {
+      padding: 100px 0 50px;
+    }
+
+    .services-title {
+      font-size: 2.5rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-step::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

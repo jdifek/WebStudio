@@ -1,0 +1,357 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const services = [
+  {
+    icon: "fa-solid fa-code",
+    title: "Web Development",
+    description: "We build modern, fast, and scalable web applications using cutting-edge technologies.",
+    features: [
+      "Responsive Design",
+      "Performance Optimization",
+      "SEO-Friendly Architecture",
+      "CMS Integration"
+    ]
+  },
+  {
+    icon: "fa-solid fa-palette",
+    title: "UI/UX Design",
+    description: "We create intuitive and visually appealing interfaces that users love.",
+    features: [
+      "User Research",
+      "Prototyping",
+      "Design Systems",
+      "Usability Testing"
+    ]
+  },
+  {
+    icon: "fa-solid fa-bullhorn",
+    title: "Branding",
+    description: "We craft unique and memorable brands that stand out in the market.",
+    features: [
+      "Logo Development",
+      "Brand Style",
+      "Brand Guidelines",
+      "Marketing Materials"
+    ]
+  },
+  {
+    icon: "fa-solid fa-chart-line",
+    title: "SEO Optimization",
+    description: "We boost your website's visibility in search engines and attract targeted traffic.",
+    features: [
+      "Technical Optimization",
+      "Content Strategy",
+      "Link Building",
+      "Analytics & Reporting"
+    ]
+  },
+  {
+    icon: "fa-solid fa-shopping-cart",
+    title: "E-commerce Solutions",
+    description: "We develop efficient online stores that drive sales.",
+    features: [
+      "Payment System Integration",
+      "Product Management",
+      "Process Automation",
+      "Sales Analytics"
+    ]
+  },
+  {
+    icon: "fa-solid fa-server",
+    title: "Support & Hosting",
+    description: "We ensure your website runs smoothly with fast technical support.",
+    features: [
+      "24/7 Monitoring",
+      "Backups",
+      "Security Updates",
+      "Technical Support"
+    ]
+  }
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Analysis & Planning",
+    description: "We study your business, goals, and target audience needs."
+  },
+  {
+    number: "02",
+    title: "Design & Prototyping",
+    description: "We create prototypes and designs to visualize the project."
+  },
+  {
+    number: "03",
+    title: "Development",
+    description: "We implement the design using modern technologies."
+  },
+  {
+    number: "04",
+    title: "Testing",
+    description: "We conduct thorough testing and optimization of functionality."
+  },
+  {
+    number: "05",
+    title: "Launch",
+    description: "We launch the project and ensure a smooth start."
+  }
+];
+---
+
+<Layout
+  title="Services | WebStudio - Web Development and Branding"
+  description="Professional services for website creation, web application development, branding, and SEO optimization. Modern solutions for your business."
+  language="en"
+>
+  <section class="services-hero">
+    <div class="container">
+      <h1 class="services-title" data-aos="fade-up">Our Services</h1>
+      <p class="services-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Comprehensive solutions for your business in the digital world
+      </p>
+    </div>
+  </section>
+
+  <section class="services-grid">
+    <div class="container">
+      <div class="grid">
+        {services.map((service, index) => (
+          <div class="service-card" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div class="service-icon">
+              <i class={service.icon}></i>
+            </div>
+            <h2 class="service-title">{service.title}</h2>
+            <p class="service-description">{service.description}</p>
+            <ul class="service-features">
+              {service.features.map(feature => (
+                <li>{feature}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="process-section">
+    <div class="container">
+      <h2 class="process-title" data-aos="fade-up">How We Work</h2>
+      <div class="process-grid">
+        {process.map((step, index) => (
+          <div class="process-step" data-aos="fade-up" data-aos-delay={index * 100}>
+            <div class="step-number">{step.number}</div>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-description">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>Ready to start a project?</h2>
+        <p>Contact us to discuss your project</p>
+        <a href="/en/contact" class="button button-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .services-hero {
+    padding: 120px 0 60px;
+    background-color: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .services-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+  }
+
+  .services-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    padding: 100px 0;
+    background-color: var(--color-white);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }
+
+  .service-card {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 40px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .service-icon {
+    font-size: 2.5rem;
+    color: var(--color-primary-500);
+    margin-bottom: 24px;
+  }
+
+  .service-title {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    color: var(--color-text-dark);
+  }
+
+  .service-description {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+
+  .service-features {
+    list-style: none;
+    padding: 0;
+  }
+
+  .service-features li {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-bottom: 8px;
+    padding-left: 24px;
+    position: relative;
+  }
+
+  .service-features li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-primary-500);
+  }
+
+  .process-section {
+    padding: 100px 0;
+    background-color: var(--color-bg-light);
+  }
+
+  .process-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 64px;
+    color: var(--color-text-dark);
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px;
+  }
+
+  .process-step {
+    text-align: center;
+    position: relative;
+  }
+
+  .process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    right: -16px;
+    width: 32px;
+    height: 2px;
+    background-color: var(--color-primary-500);
+  }
+
+  .step-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-primary-500);
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+    margin-bottom: 12px;
+    color: var(--color-text-dark);
+  }
+
+  .step-description {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .cta-section {
+    padding: 100px 0;
+    background-color: var(--color-white);
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+  }
+
+  .cta-content p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-step:nth-child(3)::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .services-hero {
+      padding: 100px 0 50px;
+    }
+
+    .services-title {
+      font-size: 2.5rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .process-step::after {
+      display: none;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

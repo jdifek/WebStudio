@@ -1,0 +1,111 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  ctaLink: string;
+  language: "ru" | "en" | "et" | "de";
+}
+
+const { title, subtitle, ctaText, ctaLink, language } = Astro.props;
+---
+
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">{title}</h1>
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">{subtitle}</p>
+      <div class="hero-cta" data-aos="fade-up" data-aos-delay="300">
+        <a href={ctaLink} class="button button-primary">{ctaText}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    height: calc(100vh - 80px);
+    min-height: 600px;
+    background-color: var(--color-bg-alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(45deg, var(--color-primary-700), var(--color-secondary-700));
+    opacity: 0.1;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: var(--color-text-dark);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta .button {
+    font-size: 1.125rem;
+    padding: 1rem 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .hero-section {
+      min-height: 500px;
+      height: auto;
+      padding: 100px 0;
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.125rem;
+    }
+    
+    .hero-cta .button {
+      font-size: 1rem;
+      padding: 0.875rem 1.75rem;
+    }
+  }
+</style>

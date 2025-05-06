@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ServicesSection from '../../components/ServicesSection.astro';
+import PortfolioSection from '../../components/PortfolioSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+
+// Services data
+const services = [
+  {
+    icon: "fa-solid fa-globe",
+    title: "Veebiarendus",
+    description: "Loome kaasaegseid, reageerivaid ja funktsionaalseid veebisaite, kasutades uusimaid tehnoloogiaid ja parimaid tavasid.",
+    link: "/et/teenused/#web-development"
+  },
+  {
+    icon: "fa-solid fa-mobile-screen",
+    title: "UX/UI Disain",
+    description: "Disainime kasutajasõbralikke ja intuitiivseid liideseid, mis pakuvad suurepärast kasutajakogemust.",
+    link: "/et/teenused/#ux-ui-design"
+  },
+  {
+    icon: "fa-solid fa-fingerprint",
+    title: "Bränding",
+    description: "Loome ainulaadseid ja meeldejäävaid brände, mis eristuvad konkurentsist ja meelitavad kliente.",
+    link: "/et/teenused/#branding"
+  },
+  {
+    icon: "fa-solid fa-magnifying-glass",
+    title: "SEO Optimeerimine",
+    description: "Parandame teie veebisaidi nähtavust otsingumootorites ja suuname sihipärase liikluse teie äri kasvatamiseks.",
+    link: "/et/teenused/#seo"
+  }
+];
+
+// Portfolio data
+const portfolioItems = [
+  {
+    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Nature Home Ökobränd",
+    category: "Bränding & Veebidisain",
+    link: "/et/portfolio/eco-brand"
+  },
+  {
+    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Rahanduse Jälgimise Rakendus",
+    category: "UI/UX & Arendus",
+    link: "/et/portfolio/finance-app"
+  },
+  {
+    image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "AlphaWear E-pood",
+    category: "E-kaubandus",
+    link: "/et/portfolio/alphawear"
+  },
+  {
+    image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "TravelDiary Blogi",
+    category: "Veebiarendus",
+    link: "/et/portfolio/travel-diary"
+  },
+  {
+    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "BeanBrew Kohviku Rebränding",
+    category: "Bränding",
+    link: "/et/portfolio/coffee-rebrand"
+  },
+  {
+    image: "https://images.pexels.com/photos/5081918/pexels-photo-5081918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    title: "Fresh Foods Pakendidisain",
+    category: "Pakendus & Bränding",
+    link: "/et/portfolio/packaging-design"
+  }
+];
+---
+
+<Layout 
+  title="WebStudio - Kaasaegsete Veebilehtede Arendamine ja Bränding"
+  description="Loome ilusaid, funktsionaalseid ja SEO-optimeeritud veebisaite, arendame brändingut ja pakume täielikku digitaalse turunduse teenuste valikut."
+  language="et"
+>
+  <HeroSection
+    title="Ideede Muutmine Digitaalseks Reaalsuseks"
+    subtitle="Loome ilusaid, funktsionaalseid ja SEO-optimeeritud veebisaite, mis aitavad teie äril kasvada ja saavutada uusi kõrgusi."
+    ctaText="Meie Teenused"
+    ctaLink="/et/teenused/"
+    language="et"
+  />
+  
+  <ServicesSection
+    sectionTitle="Meie Teenused"
+    sectionSubtitle="Pakume täielikku veebiarenduse ja disaini teenuste valikut, et aidata teie äril digitaalses maailmas edu saavutada."
+    services={services}
+    ctaText="Kõik Teenused"
+    ctaLink="/et/teenused/"
+  />
+  
+  <PortfolioSection
+    sectionTitle="Meie Portfell"
+    sectionSubtitle="Tutvuge meie viimaste projektidega ja vaadake, kuidas aitame oma klientidel eesmärke saavutada."
+    portfolioItems={portfolioItems}
+    ctaText="Kõik Projektid"
+    ctaLink="/et/portfolio/"
+  />
+  
+  <ContactSection
+    sectionTitle="Võtke Ühendust"
+    sectionSubtitle="Olete valmis projekti alustama või on küsimusi? Võtke meiega ühendust ja vastame teile 24 tunni jooksul."
+    address="Tallinn, Eesti"
+    email="info@webstudio.com"
+    phone="+372 5555 5555"
+    formNameLabel="Teie Nimi"
+    formEmailLabel="Teie E-post"
+    formMessageLabel="Sõnum"
+    formSubmitText="Saada Sõnum"
+  />
+</Layout>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />

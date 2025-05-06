@@ -1,0 +1,327 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const categories = [
+  "Kõik",
+  "Veebiarendus",
+  "Bränding",
+  "UI/UX Disain",
+  "E-kaubandus"
+];
+
+const projects = [
+  {
+    title: "Nature Home",
+    category: "Bränding",
+    image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Öko-sõbraliku ettevõtte brändingu arendus",
+    link: "/et/portfell/nature-home"
+  },
+  {
+    title: "TechFin App",
+    category: "UI/UX Disain",
+    image: "https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Finantstehnoloogia idufirma mobiilirakenduse disain",
+    link: "/et/portfell/techfin-app"
+  },
+  {
+    title: "FreshMarket",
+    category: "E-kaubandus",
+    image: "https://images.pexels.com/photos/4050315/pexels-photo-4050315.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Talutoodete veebipood",
+    link: "/et/portfell/freshmarket"
+  },
+  {
+    title: "Traveler's Blog",
+    category: "Veebiarendus",
+    image: "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Reisiblogi interaktiivse kaardiga",
+    link: "/et/portfell/travelers-blog"
+  },
+  {
+    title: "Urban Coffee",
+    category: "Bränding",
+    image: "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Linnakohvikute võrgustiku ümberbrändimine",
+    link: "/et/portfell/urban-coffee"
+  },
+  {
+    title: "EcoBox",
+    category: "Bränding",
+    image: "https://images.pexels.com/photos/5081918/pexels-photo-5081918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    description: "Ökotoodete pakendi disain",
+    link: "/et/portfell/ecobox"
+  }
+];
+---
+
+<Layout
+  title="Portfell | WebStudio - Meie tööd ja projektid"
+  description="Tutvuge meie parimate projektidega veebiarenduse, brändingu ja disaini valdkonnas. WebStudio kased ja tööde näited."
+  language="et"
+>
+  <section class="portfolio-hero">
+    <div class="container">
+      <h1 class="portfolio-title" data-aos="fade-up">Meie tööd</h1>
+      <p class="portfolio-subtitle" data-aos="fade-up" data-aos-delay="100">
+        Tutvuge meie viimaste projektidega veebiarenduse, brändingu ja disaini valdkonnas
+      </p>
+    </div>
+  </section>
+
+  <section class="portfolio-filters">
+    <div class="container">
+      <div class="filters-list" data-aos="fade-up">
+        {categories.map(category => (
+          <button class="filter-button" data-category={category}>
+            {category}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio-grid">
+    <div class="container">
+      <div class="grid">
+        {projects.map((project, index) => (
+          <a 
+            href={project.link} 
+            class="portfolio-item"
+            data-category={project.category}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="portfolio-image">
+              <img src={project.image} alt={project.title} loading="lazy" />
+            </div>
+            <div class="portfolio-overlay">
+              <div class="portfolio-content">
+                <span class="portfolio-category">{project.category}</span>
+                <h2 class="portfolio-title">{project.title}</h2>
+                <p class="portfolio-description">{project.description}</p>
+                <span class="portfolio-link">Rohkem →</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content" data-aos="fade-up">
+        <h2>Kas soovite projekti arutada?</h2>
+        <p>Oleme valmis aitama teie ideid ellu viia</p>
+        <a href="/et/kontakt" class="button button-primary">Võtke meiega ühendust</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+
+<style>
+  .portfolio-hero {
+    padding: 120px 0 60px;
+    background-color: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .portfolio-hero .portfolio-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text-dark);
+  }
+
+  .portfolio-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .portfolio-filters {
+    padding: 40px 0;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .filters-list {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .filter-button {
+    padding: 8px 20px;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .filter-button:hover,
+  .filter-button.active {
+    color: var(--color-primary-500);
+  }
+
+  .portfolio-grid {
+    padding: 80px 0;
+    background-color: var(--color-white);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .portfolio-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    display: block;
+    text-decoration: none;
+  }
+
+  .portfolio-image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.2));
+    opacity: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 32px;
+    transition: opacity 0.3s ease;
+  }
+
+  .portfolio-content {
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+  }
+
+  .portfolio-item .portfolio-category {
+    display: inline-block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    color: var(--color-primary-300);
+    margin-bottom: 8px;
+  }
+
+  .portfolio-item .portfolio-title {
+    font-size: 1.5rem;
+    color: var(--color-white);
+    margin-bottom: 8px;
+  }
+
+  .portfolio-description {
+    font-size: 1rem;
+    color: var(--color-neutral-300);
+    margin-bottom: 16px;
+  }
+
+  .portfolio-link {
+    color: var(--color-white);
+    font-weight: 500;
+  }
+
+  .portfolio-item:hover .portfolio-image img {
+    transform: scale(1.05);
+  }
+
+  .portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+  }
+
+  .portfolio-item:hover .portfolio-content {
+    transform: translateY(0);
+  }
+
+  .cta-section {
+    padding: 100px 0;
+    background-color: var(--color-bg-light);
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+  }
+
+  .cta-content p {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-hero {
+      padding: 100px 0 50px;
+    }
+
+    .portfolio-hero .portfolio-title {
+      font-size: 2.5rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Portfolio filtering
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const category = button.getAttribute('data-category');
+      
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Filter items
+      portfolioItems.forEach(item => {
+        if (category === 'Kõik' || item.getAttribute('data-category') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Set "Kõik" as active by default
+  filterButtons[0].classList.add('active');
+</script>

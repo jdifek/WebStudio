@@ -1,0 +1,231 @@
+---
+interface Props {
+  sectionTitle: string;
+  sectionSubtitle: string;
+  address: string;
+  email: string;
+  phone: string;
+  formNameLabel: string;
+  formEmailLabel: string;
+  formMessageLabel: string;
+  formSubmitText: string;
+}
+
+const { 
+  sectionTitle, 
+  sectionSubtitle, 
+  address, 
+  email, 
+  phone,
+  formNameLabel,
+  formEmailLabel,
+  formMessageLabel,
+  formSubmitText
+} = Astro.props;
+---
+
+<section class="contact-section">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title" data-aos="fade-up">{sectionTitle}</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">{sectionSubtitle}</p>
+    </div>
+    
+    <div class="contact-grid">
+      <div class="contact-info" data-aos="fade-up" data-aos-delay="150">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div class="contact-info-content">
+            <h3>Address</h3>
+            <p>{address}</p>
+          </div>
+        </div>
+        
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <i class="fa-solid fa-envelope"></i>
+          </div>
+          <div class="contact-info-content">
+            <h3>Email</h3>
+            <p><a href={`mailto:${email}`}>{email}</a></p>
+          </div>
+        </div>
+        
+        <div class="contact-info-item">
+          <div class="contact-info-icon">
+            <i class="fa-solid fa-phone"></i>
+          </div>
+          <div class="contact-info-content">
+            <h3>Phone</h3>
+            <p><a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form" data-aos="fade-up" data-aos-delay="200">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">{formNameLabel}</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="email">{formEmailLabel}</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="message">{formMessageLabel}</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="button button-primary">{formSubmitText}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 120px 0;
+    background-color: var(--color-bg-light);
+  }
+
+  .section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 80px;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-dark);
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+  }
+
+  .contact-info-item {
+    display: flex;
+    margin-bottom: 40px;
+  }
+
+  .contact-info-icon {
+    font-size: 1.5rem;
+    color: var(--color-primary-500);
+    margin-right: 24px;
+    flex-shrink: 0;
+  }
+
+  .contact-info-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+  }
+
+  .contact-info-content p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .contact-info-content a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .contact-info-content a:hover {
+    color: var(--color-primary-500);
+  }
+
+  .contact-form {
+    background-color: var(--color-white);
+    border-radius: 8px;
+    padding: 48px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--color-text-dark);
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 1rem;
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 2px rgba(var(--color-primary-rgb), 0.1);
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 992px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+    
+    .contact-info-item {
+      margin-bottom: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+    
+    .contact-info {
+      grid-template-columns: 1fr;
+    }
+    
+    .contact-form {
+      padding: 32px;
+    }
+  }
+</style>
