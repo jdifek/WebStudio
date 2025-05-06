@@ -1,8 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-// Редирект на страницу https://web-studio-coral.vercel.app/en/
-const redirectUrl = "https://web-studio-coral.vercel.app/en/";
+const redirectUrl = "/en/";
 ---
 
 <!DOCTYPE html>
@@ -17,8 +14,10 @@ const redirectUrl = "https://web-studio-coral.vercel.app/en/";
     <link rel="canonical" href={redirectUrl} />
   </head>
   <body>
+
+    <!-- JavaScript-редирект как запасной вариант -->
     <script>
-      window.location.href = "https://web-studio-coral.vercel.app/en/";
+      window.location.href = "/en/";
     </script>
   </body>
 </html>
